@@ -1,8 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-
-let cards = ["fa-diamond", "fa-diamond", 
+const cards = ["fa-diamond", "fa-diamond", 
              "fa-paper-plane-o", "fa-paper-plane-o",
              "fa-anchor", "fa-anchor",
              "fa-bolt", "fa-bolt",
@@ -10,6 +9,11 @@ let cards = ["fa-diamond", "fa-diamond",
              "fa-leaf", "fa-leaf",
              "fa-bycycle", "fa-bicycle",
              "fa-bomb", "fa-bomb"];
+
+// Creates a templete for the HTML
+let generateCard = card => {
+  return `<li class="card"><i class="fa ${card}"></i></li>`;
+}
 
 /*
  * Display the cards on the page
@@ -34,6 +38,20 @@ function shuffle(array) {
 
   return array;
 }
+
+startGame = () => {
+  let deck = document.querySelector(".deck");
+
+  // Creates an HTML element for each card
+  let cardHTML = cards.map((card) => {
+    return generateCard(card);
+  });
+
+  // Join the HTML elements together
+  deck.innerHTML = cardHTML.join('');
+}
+
+startGame();
 
 /*
  * set up the event listener for a card. If a card is clicked:

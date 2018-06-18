@@ -25,6 +25,13 @@ function shuffle(array) {
     return array;
 }
 
+const allCards = document.querySelectorAll('.card'); 
+
+// Flip over cards 
+allCards.forEach(function (card) { card.addEventListener('click', function (event) { 
+    console.log("This was clicked."); 
+    card.classList.add('open', 'show'); }); 
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:

@@ -42,8 +42,8 @@ function shuffle(array) {
 startGame = () => {
   let deck = document.querySelector(".deck");
 
-  // Creates an HTML element for each card
-  let cardHTML = cards.map((card) => {
+  // Randomely creates an HTML element for each card, using shuffle function.
+  let cardHTML = shuffle(cards).map((card) => {
     return generateCard(card);
   });
 

@@ -2,7 +2,6 @@
  * Create a list that holds all of your cards
  */
 
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -12,26 +11,20 @@
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
-
-const allCards = document.querySelectorAll('.card'); 
-
-// Flip over cards 
-allCards.forEach(function (card) { card.addEventListener('click', function (event) { 
-    console.log("This was clicked."); 
-    card.classList.add('open', 'show'); }); 
-});
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -43,3 +36,30 @@ allCards.forEach(function (card) { card.addEventListener('click', function (even
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+const allCards = document.querySelectorAll(".card");
+let openCards = [];
+
+// Flip card over when clicked.
+allCards.forEach((card) => {
+  card.addEventListener("click", (event) => {
+
+    // When clicked, add the card to the array of open cards and flip the card to show it.
+    if (!card.classList.contains("open") && !card.classList.contains("show") && !card.classList.contains("match")) {
+      openCards.push(card);
+      card.classList.add("open", "show");
+
+      // When clicking two cards that do not match, flip them over to hide them.
+      if (openCards.length == 2) {
+        setTimeout(() => {
+          openCards.forEach((card) => {
+            card.classList.remove("open", "show");
+          });
+
+          // Empty the array of open cards.
+          openCards = [];
+        }, 1000);
+      }
+    }
+  });
+});

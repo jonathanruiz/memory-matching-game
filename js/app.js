@@ -46,13 +46,15 @@ startGame = () => {
   let cardHTML = shuffle(cards).map((card) => {
     return generateCard(card);
   });
+  moves = 0;
+  moveCounter.innerHTML = moves;
 
   // Join the HTML elements together
   deck.innerHTML = cardHTML.join('');
 }
 
-const allCards = document.querySelectorAll(".card");
-let openCards = [];
+let moves = 0;
+let moveCounter = document.querySelector(".moves");
 
 startGame();
 
@@ -66,6 +68,10 @@ startGame();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
+const allCards = document.querySelectorAll(".card");
+let openCards = [];
 
 allCards.forEach((card) => {
   card.addEventListener("click", (event) => {
@@ -92,6 +98,9 @@ allCards.forEach((card) => {
             openCards = [];
           }, 1000);
         }
+
+        moves += 1
+        moveCounter.innerHTML = moves;
       }
     }
   });

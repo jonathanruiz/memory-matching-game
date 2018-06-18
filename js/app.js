@@ -7,12 +7,12 @@ const cards = ["fa-diamond", "fa-diamond",
              "fa-bolt", "fa-bolt",
              "fa-cube", "fa-cube",
              "fa-leaf", "fa-leaf",
-             "fa-bycycle", "fa-bicycle",
+             "fa-bicycle", "fa-bicycle",
              "fa-bomb", "fa-bomb"];
 
 // Creates a templete for the HTML
 let generateCard = card => {
-  return `<li class="card"><i class="fa ${card}"></i></li>`;
+  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
 
 /*
@@ -74,17 +74,24 @@ allCards.forEach((card) => {
     if (!card.classList.contains("open") && !card.classList.contains("show") && !card.classList.contains("match")) {
       openCards.push(card);
       card.classList.add("open", "show");
-
-      //If the two cards do not match, hide them
+      
       if (openCards.length == 2) {
-        setTimeout(() => {
-          openCards.forEach((card) => {
-            card.classList.remove("open", "show");
-          });
-
-          // Empty the array of open cards
+        // If the two cards do match, match them
+        if (openCards[0].dataset.card == openCards[1].dataset.card) {
+          openCards[0].classList.add("match", "show", "open");
+          openCards[1].classList.add("match", "show", "open");
           openCards = [];
-        }, 1000);
+        } else {
+          // If the two cards don't match, hide them
+          setTimeout(() => {
+            openCards.forEach((card) => {
+              card.classList.remove("open", "show");
+            });
+
+            // Empty the array of open cards
+            openCards = [];
+          }, 1000);
+        }
       }
     }
   });

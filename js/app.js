@@ -67,23 +67,22 @@ startGame();
 const allCards = document.querySelectorAll(".card");
 let openCards = [];
 
-// Flip card over when clicked.
 allCards.forEach((card) => {
   card.addEventListener("click", (event) => {
 
-    // When clicked, add the card to the array of open cards and flip the card to show it.
+    // When clicked, add the card to the array of open cards and flip the card to show it
     if (!card.classList.contains("open") && !card.classList.contains("show") && !card.classList.contains("match")) {
       openCards.push(card);
       card.classList.add("open", "show");
 
-      // When clicking two cards that do not match, flip them over to hide them.
+      //If the two cards do not match, hide them
       if (openCards.length == 2) {
         setTimeout(() => {
           openCards.forEach((card) => {
             card.classList.remove("open", "show");
           });
 
-          // Empty the array of open cards.
+          // Empty the array of open cards
           openCards = [];
         }, 1000);
       }

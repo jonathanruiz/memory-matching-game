@@ -69,7 +69,6 @@ startGame();
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-
 const allCards = document.querySelectorAll(".card");
 let openCards = [];
 
@@ -104,4 +103,11 @@ allCards.forEach((card) => {
       }
     }
   });
+});
+
+let restartButton = document.querySelector(".restart");
+
+restartButton.addEventListener("click", () => {
+  console.log("Restart the game");
+  startGame();
 });

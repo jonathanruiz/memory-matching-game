@@ -39,10 +39,10 @@ function shuffle(array) {
   return array;
 }
 
-startGame = () => {
+let startGame = () => {
   let deck = document.querySelector(".deck");
 
-  // Randomely creates an HTML element for each card, using shuffle function.
+  // Randomly creates an HTML element for each card, using shuffle function.
   let cardHTML = shuffle(cards).map((card) => {
     return generateCard(card);
   });
@@ -98,7 +98,7 @@ allCards.forEach((card) => {
           }, 1000);
         }
 
-        moves += 1
+        moves += 1;
         moveCounter.innerHTML = moves;
       }
     }
@@ -109,5 +109,5 @@ let restartButton = document.querySelector(".restart");
 
 restartButton.addEventListener("click", () => {
   console.log("Restart the game");
-  startGame();
+  // startGame();
 });

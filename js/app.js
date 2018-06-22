@@ -15,6 +15,10 @@ let generateCard = card => {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
 
+let moves = 0;
+let moveCounter = document.querySelector(".moves");
+let restartButton = document.querySelector(".restart");
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -53,8 +57,22 @@ let startGame = () => {
   deck.innerHTML = cardHTML.join('');
 }
 
-let moves = 0;
-let moveCounter = document.querySelector(".moves");
+let matchCards = () => {
+  openCards[0].classList.add("match", "show", "open");
+  openCards[1].classList.add("match", "show", "open");
+  openCards = [];
+}
+
+let mismatchCards = () => {
+  setTimeout(() => {
+    openCards.forEach((card) => {
+      card.classList.remove("open", "show");
+    });
+
+    // Empty the array of open cards
+    openCards = [];
+  }, 1000);
+}
 
 startGame();
 
@@ -83,19 +101,10 @@ allCards.forEach((card) => {
       if (openCards.length == 2) {
         // If the two cards do match, match them
         if (openCards[0].dataset.card == openCards[1].dataset.card) {
-          openCards[0].classList.add("match", "show", "open");
-          openCards[1].classList.add("match", "show", "open");
-          openCards = [];
+          matchCards();
         } else {
           // If the two cards don't match, hide them
-          setTimeout(() => {
-            openCards.forEach((card) => {
-              card.classList.remove("open", "show");
-            });
-
-            // Empty the array of open cards
-            openCards = [];
-          }, 1000);
+          mismatchCards();
         }
 
         moves += 1;
@@ -105,9 +114,7 @@ allCards.forEach((card) => {
   });
 });
 
-let restartButton = document.querySelector(".restart");
-
 restartButton.addEventListener("click", () => {
   console.log("Restart the game");
-  // startGame();
+  startGame();
 });

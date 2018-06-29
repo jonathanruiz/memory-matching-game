@@ -1,19 +1,29 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards = ["fa-diamond", "fa-diamond", 
-             "fa-paper-plane-o", "fa-paper-plane-o",
-             "fa-anchor", "fa-anchor",
-             "fa-bolt", "fa-bolt",
-             "fa-cube", "fa-cube",
-             "fa-leaf", "fa-leaf",
-             "fa-bicycle", "fa-bicycle",
-             "fa-bomb", "fa-bomb"];
+const cards = [
+  "fa-diamond",
+  "fa-diamond",
+  "fa-paper-plane-o",
+  "fa-paper-plane-o",
+  "fa-anchor",
+  "fa-anchor",
+  "fa-bolt",
+  "fa-bolt",
+  "fa-cube",
+  "fa-cube",
+  "fa-leaf",
+  "fa-leaf",
+  "fa-bicycle",
+  "fa-bicycle",
+  "fa-bomb",
+  "fa-bomb"
+];
 
 // Creates a templete for the HTML
 let generateCard = card => {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
-}
+};
 
 let moves = 0;
 let moveCounter = document.querySelector(".moves");
@@ -41,38 +51,38 @@ let shuffle = array => {
   }
 
   return array;
-}
+};
 
 let startGame = () => {
   let deck = document.querySelector(".deck");
 
   // Randomly creates an HTML element for each card, using shuffle function.
-  let cardHTML = shuffle(cards).map((card) => {
+  let cardHTML = shuffle(cards).map(card => {
     return generateCard(card);
   });
   moves = 0;
   moveCounter.innerHTML = moves;
 
   // Join the HTML elements together
-  deck.innerHTML = cardHTML.join('');
-}
+  deck.innerHTML = cardHTML.join("");
+};
 
 let matchCards = () => {
   openCards[0].classList.add("match", "show", "open");
   openCards[1].classList.add("match", "show", "open");
   openCards = [];
-}
+};
 
 let mismatchCards = () => {
   setTimeout(() => {
-    openCards.forEach((card) => {
+    openCards.forEach(card => {
       card.classList.remove("open", "show");
     });
 
     // Empty the array of open cards
     openCards = [];
   }, 1000);
-}
+};
 
 startGame();
 
@@ -90,14 +100,17 @@ startGame();
 const allCards = document.querySelectorAll(".card");
 let openCards = [];
 
-allCards.forEach((card) => {
-  card.addEventListener("click", (event) => {
-
+allCards.forEach(card => {
+  card.addEventListener("click", event => {
     // When clicked, add the card to the array of open cards and flip the card to show it
-    if (!card.classList.contains("open") && !card.classList.contains("show") && !card.classList.contains("match")) {
+    if (
+      !card.classList.contains("open") &&
+      !card.classList.contains("show") &&
+      !card.classList.contains("match")
+    ) {
       openCards.push(card);
       card.classList.add("open", "show");
-      
+
       if (openCards.length == 2) {
         // If the two cards do match, match them
         if (openCards[0].dataset.card == openCards[1].dataset.card) {

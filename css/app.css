@@ -85,6 +85,7 @@ h1 {
 }
 
 .deck .card.mismatch {
+    background:#f95c3c;
     animation-duration: .5s;
     animation-name: mismatch;
 }
@@ -110,7 +111,6 @@ h1 {
 @keyframes mismatch {
   0% {
     transform: rotate(0deg) translateX(0px);
-        background:#f95c3c;
   }
   20% {
     transform: rotate(2deg) translateX(10px);
@@ -126,7 +126,6 @@ h1 {
   }
   100% {
     transform: rotate(0deg) translateX(0px);
-    font-size: 0px;
   }
 }
 

@@ -120,7 +120,6 @@ allCards.forEach(card => {
         if (openCards[0].dataset.card == openCards[1].dataset.card) {
           matchCards();
           match++;
-          console.log(match);
         } else {
           // If the two cards don't match, hide them
           mismatchCards();
@@ -130,9 +129,9 @@ allCards.forEach(card => {
         moveCounter.innerHTML = moves;
       }
 
+      // If the game is won, show the congratulations screen
       if (match == 8)
       {
-        console.log("You won!");
         swal({
           type: 'success',
           title: 'Congratulations! You won!',
@@ -140,16 +139,15 @@ allCards.forEach(card => {
           confirmButtonText: 'Play Again?',
         }).then((result) => {
           if (result.value) {
-            console.log("Play Again!");
             startGame();
           }
         });
       }
+      
     }
   });
 });
 
 restartButton.addEventListener("click", () => {
-  console.log("Restart the game");
   startGame();
 });

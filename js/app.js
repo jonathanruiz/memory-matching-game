@@ -25,6 +25,7 @@ let generateCard = card => {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 };
 
+let match = 0;
 let moves = 0;
 let moveCounter = document.querySelector(".moves");
 let restartButton = document.querySelector(".restart");
@@ -60,6 +61,8 @@ let startGame = () => {
   let cardHTML = shuffle(cards).map(card => {
     return generateCard(card);
   });
+
+  match = 0;
   moves = 0;
   moveCounter.innerHTML = moves;
 
@@ -102,6 +105,7 @@ let openCards = [];
 
 allCards.forEach(card => {
   card.addEventListener("click", event => {
+
     // When clicked, add the card to the array of open cards and flip the card to show it
     if (
       !card.classList.contains("open") &&
@@ -110,11 +114,13 @@ allCards.forEach(card => {
     ) {
       openCards.push(card);
       card.classList.add("open", "show");
-
+      
       if (openCards.length == 2) {
         // If the two cards do match, match them
         if (openCards[0].dataset.card == openCards[1].dataset.card) {
           matchCards();
+          match++;
+          console.log(match);
         } else {
           // If the two cards don't match, hide them
           mismatchCards();
@@ -122,6 +128,22 @@ allCards.forEach(card => {
 
         moves += 1;
         moveCounter.innerHTML = moves;
+      }
+
+      if (match == 8)
+      {
+        console.log("You won!");
+        swal({
+          type: 'success',
+          title: 'Congratulations! You won!',
+          text: 'With ' + moves + ' moves.',
+          confirmButtonText: 'Play Again?',
+        }).then((result) => {
+          if (result.value) {
+            console.log("Play Again!");
+            startGame();
+          }
+        });
       }
     }
   });

@@ -25,8 +25,23 @@ let generateCard = card => {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 };
 
+// Congratulations Modal
+let modal = () => {
+  swal({
+    type: 'success',
+    title: 'Congratulations! You won!',
+    text: 'With ' + moves + ' moves.',
+    confirmButtonText: 'Play Again?',
+  }).then((result) => {
+    if (result.value) {
+      startGame();
+    }
+  });
+}
+
 let match = 0;
 let moves = 0;
+
 let moveCounter = document.querySelector(".moves");
 let restartButton = document.querySelector(".restart");
 
@@ -132,16 +147,7 @@ allCards.forEach(card => {
       // If the game is won, show the congratulations screen
       if (match == 8)
       {
-        swal({
-          type: 'success',
-          title: 'Congratulations! You won!',
-          text: 'With ' + moves + ' moves.',
-          confirmButtonText: 'Play Again?',
-        }).then((result) => {
-          if (result.value) {
-            startGame();
-          }
-        });
+        modal();
       }
       
     }

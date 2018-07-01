@@ -1,24 +1,18 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards = [
-  "fa-diamond",
+let cards = [
   "fa-diamond",
   "fa-paper-plane-o",
-  "fa-paper-plane-o",
-  "fa-anchor",
   "fa-anchor",
   "fa-bolt",
-  "fa-bolt",
-  "fa-cube",
   "fa-cube",
   "fa-leaf",
-  "fa-leaf",
   "fa-bicycle",
-  "fa-bicycle",
-  "fa-bomb",
   "fa-bomb"
 ];
+
+cards = cards.concat(cards);
 
 // Creates a templete for the HTML
 let generateCard = card => {
@@ -28,16 +22,16 @@ let generateCard = card => {
 // Congratulations Modal
 let modal = () => {
   swal({
-    type: 'success',
-    title: 'Congratulations! You won!',
-    text: 'With ' + moves + ' moves.',
-    confirmButtonText: 'Play Again?',
-  }).then((result) => {
+    type: "success",
+    title: "Congratulations! You won!",
+    text: "With " + moves + " moves.",
+    confirmButtonText: "Play Again?"
+  }).then(result => {
     if (result.value) {
       startGame();
     }
   });
-}
+};
 
 let match = 0;
 let moves = 0;
@@ -101,7 +95,7 @@ let flipCards = () => {
     moves += 1;
     moveCounter.innerHTML = moves;
   }
-}
+};
 
 // Function that recognizes a matche
 let matchCards = () => {
@@ -139,7 +133,7 @@ const allCards = document.querySelectorAll(".card");
 let openCards = [];
 
 allCards.forEach(card => {
-  card.addEventListener("click", event => {
+  card.addEventListener("click", () => {
     // When clicked, add the card to the array of open cards and flip the card to show it
     if (
       !card.classList.contains("open") &&
@@ -148,15 +142,14 @@ allCards.forEach(card => {
     ) {
       openCards.push(card);
       card.classList.add("open", "show");
-      
+
       // Flips the cards
       flipCards();
 
       // If the game is won, show the congratulations screen
-      if (match == 8)
-      {
+      if (match == 8) {
         modal();
-      }  
+      }
     }
   });
 });

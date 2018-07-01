@@ -69,6 +69,7 @@ let shuffle = array => {
   return array;
 };
 
+// Function that starts the game
 let startGame = () => {
   let deck = document.querySelector(".deck");
 
@@ -85,12 +86,31 @@ let startGame = () => {
   deck.innerHTML = cardHTML.join("");
 };
 
+// Function that flips the cards
+let flipCards = () => {
+  if (openCards.length == 2) {
+    // If the two cards do match, match them
+    if (openCards[0].dataset.card == openCards[1].dataset.card) {
+      matchCards();
+      match++;
+    } else {
+      // If the two cards don't match, hide them
+      mismatchCards();
+    }
+
+    moves += 1;
+    moveCounter.innerHTML = moves;
+  }
+}
+
+// Function that recognizes a matche
 let matchCards = () => {
   openCards[0].classList.add("match", "show", "open");
   openCards[1].classList.add("match", "show", "open");
   openCards = [];
 };
 
+// Function that recognizes a mismatch
 let mismatchCards = () => {
   setTimeout(() => {
     openCards.forEach(card => {
@@ -120,7 +140,6 @@ let openCards = [];
 
 allCards.forEach(card => {
   card.addEventListener("click", event => {
-
     // When clicked, add the card to the array of open cards and flip the card to show it
     if (
       !card.classList.contains("open") &&
@@ -130,30 +149,19 @@ allCards.forEach(card => {
       openCards.push(card);
       card.classList.add("open", "show");
       
-      if (openCards.length == 2) {
-        // If the two cards do match, match them
-        if (openCards[0].dataset.card == openCards[1].dataset.card) {
-          matchCards();
-          match++;
-        } else {
-          // If the two cards don't match, hide them
-          mismatchCards();
-        }
-
-        moves += 1;
-        moveCounter.innerHTML = moves;
-      }
+      // Flips the cards
+      flipCards();
 
       // If the game is won, show the congratulations screen
       if (match == 8)
       {
         modal();
-      }
-      
+      }  
     }
   });
 });
 
+// Restarts the game when called
 restartButton.addEventListener("click", () => {
   startGame();
 });

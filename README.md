@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Rules](#Rules)
-* [Code Dependencies](#Code Dependcies)
+* [Code Dependencies](#CodeDependcies)
 
 ## Rules
 

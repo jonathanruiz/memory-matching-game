@@ -19,12 +19,18 @@ let generateCard = card => {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 };
 
+let generateStars = (starTwo, starThree) => {
+  return `<li><i class="fa fa-star"></i></li> 
+          <li><i class="fa fa-star${starTwo}"></i></li> 
+          <li><i class="fa fa-star${starThree}"></i></li>`;
+}
+
 // Congratulations Modal
 let modal = () => {
   swal({
     type: "success",
     title: "Congratulations! You won!",
-    text: "With " + moves + " moves.",
+    text: "With " + moves + " moves and " + numStars + " stars.",
     confirmButtonText: "Play Again?"
   }).then(result => {
     if (result.value) {
@@ -33,10 +39,14 @@ let modal = () => {
   });
 };
 
+let numStars = 3;
+let starsHTML;
 let match = 0;
 let moves = 0;
 
+let deck = document.querySelector(".deck");
 let moveCounter = document.querySelector(".moves");
+let stars = document.querySelector(".stars");
 let restartButton = document.querySelector(".restart");
 
 /*
@@ -65,16 +75,19 @@ let shuffle = array => {
 
 // Function that starts the game
 let startGame = () => {
-  let deck = document.querySelector(".deck");
 
   // Randomly creates an HTML element for each card, using shuffle function.
   let cardHTML = shuffle(cards).map(card => {
     return generateCard(card);
   });
 
+  numStars = 3;
   match = 0;
   moves = 0;
   moveCounter.innerHTML = moves;
+
+  // Add the stars to the board
+  stars.innerHTML = generateStars("", "");
 
   // Join the HTML elements together
   deck.innerHTML = cardHTML.join("");
@@ -145,6 +158,18 @@ allCards.forEach(card => {
 
       // Flips the cards
       flipCards();
+
+      if (moves <= 10) {
+    
+      }
+      else if (moves <= 14) {
+        numStars = 2;
+        stars.innerHTML = generateStars("", "-o");
+      }
+      else if (moves <= 18) {
+        numStars = 1;
+        stars.innerHTML = generateStars("-o", "-o");
+      }
 
       // If the game is won, show the congratulations screen
       if (match == 8) {

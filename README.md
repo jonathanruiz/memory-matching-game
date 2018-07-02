@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-* [Rules](#Rules)
-* [Code Dependencies](#Code-Dependcies)
+* [Rules](#rules)
+* [Code Dependencies](#code-dependencies)
 
 ## Rules
 

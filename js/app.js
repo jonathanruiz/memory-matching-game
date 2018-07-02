@@ -40,14 +40,14 @@ let modal = () => {
 };
 
 let numStars = 3;
-let starsHTML;
 let match = 0;
 let moves = 0;
 
-let deck = document.querySelector(".deck");
-let moveCounter = document.querySelector(".moves");
-let stars = document.querySelector(".stars");
-let restartButton = document.querySelector(".restart");
+// Query Selectors for classes
+const deck = document.querySelector(".deck");
+const moveCounter = document.querySelector(".moves");
+const stars = document.querySelector(".stars");
+const restartButton = document.querySelector(".restart");
 
 /*
  * Display the cards on the page

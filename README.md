@@ -20,6 +20,8 @@ With this memory matching game, you:
 
 ## Code Dependencies
 
+In order to shuffle the function, I used a shuffle function provided in [StackOverflow](http://stackoverflow.com/a/2450976).
+
 The game uses a few libraries:
 1. [SweetAlert2](https://github.com/sweetalert2/sweetalert2) - to alert the player they won the game.
 2. [easytimer.js](https://github.com/albert-gonzalez/easytimer.js) - a timer library to let the player know how long their game took.

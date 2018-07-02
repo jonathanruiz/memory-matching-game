@@ -95,7 +95,7 @@ let startGame = () => {
 
   // Start timer and display it on the screen
   timer.start();
-  timer.addEventListener('secondsUpdated', function (e) {
+  timer.addEventListener('secondsUpdated', (e) => {
     timerClock.innerHTML = timer.getTimeValues().toString();
   });
 

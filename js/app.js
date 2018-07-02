@@ -172,13 +172,18 @@ let matchCards = () => {
 // Function that recognizes a mismatch
 let mismatchCards = () => {
   setTimeout(() => {
+    openCards[0].classList.add("mismatch");
+    openCards[1].classList.add("mismatch");
+  }, 500);
+
+  setTimeout(()=> {
     openCards.forEach(card => {
-      card.classList.remove("open", "show");
+      card.classList.remove("mismatch", "open", "show");
     });
 
     // Empty the array of open cards
     openCards = [];
-  }, 1000);
+  }, 1500);
 };
 
 startGame();

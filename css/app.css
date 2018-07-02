@@ -55,7 +55,7 @@ h1 {
     height: 125px;
     width: 125px;
     background: #2e3d49;
-    font-size: 0;
+    font-size: 33px;
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
@@ -79,7 +79,7 @@ h1 {
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 0px;
     animation-duration: .5s;
     animation-name: match;
 }

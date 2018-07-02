@@ -27,11 +27,16 @@ let generateStars = (starTwo, starThree) => {
 
 // Congratulations Modal
 let modal = () => {
+  // Stops the timer
+  timer.stop();
+  time = timerClock.innerHTML;
+
   swal({
     type: "success",
     title: "Congratulations! You won!",
-    text: "With " + moves + " moves and " + numStars + " stars.",
-    confirmButtonText: "Play Again?"
+    text: `With moves ${moves} and ${numStars} stars.`,
+    confirmButtonText: "Play Again?",
+    footer: `It took you ${time} to beat the game.`
   }).then(result => {
     if (result.value) {
       startGame();
@@ -88,6 +93,7 @@ let startGame = () => {
   moves = 0;
   moveCounter.innerHTML = moves;
 
+  // Start timer and display it on the screen
   timer.start();
   timer.addEventListener('secondsUpdated', function (e) {
     timerClock.innerHTML = timer.getTimeValues().toString();

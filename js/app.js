@@ -39,12 +39,14 @@ let modal = () => {
   });
 };
 
+let timer = new Timer();
 let numStars = 3;
 let match = 0;
 let moves = 0;
 
 // Query Selectors for classes
 const deck = document.querySelector(".deck");
+const timerClock = document.querySelector(".timer");
 const moveCounter = document.querySelector(".moves");
 const stars = document.querySelector(".stars");
 const restartButton = document.querySelector(".restart");
@@ -85,6 +87,11 @@ let startGame = () => {
   match = 0;
   moves = 0;
   moveCounter.innerHTML = moves;
+
+  timer.start();
+  timer.addEventListener('secondsUpdated', function (e) {
+    timerClock.innerHTML = timer.getTimeValues().toString();
+  });
 
   // Add the stars to the board
   stars.innerHTML = generateStars("", "");

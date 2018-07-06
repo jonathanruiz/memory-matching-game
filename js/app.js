@@ -142,6 +142,9 @@ let startGame = () => {
   // Join the HTML elements together
   deck.innerHTML = cardHTML.join("");
 
+  // Empty array of open cards
+  openCards = [];
+
   playGame();
 };
 
@@ -176,7 +179,7 @@ let mismatchCards = () => {
     openCards[1].classList.add("mismatch");
   }, 500);
 
-  setTimeout(()=> {
+  setTimeout(() => {
     openCards.forEach(card => {
       card.classList.remove("mismatch", "open", "show");
     });

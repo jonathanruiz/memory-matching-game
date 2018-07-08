@@ -160,6 +160,29 @@ h1 {
     text-align: center;
 }
 
-@media screen and (min-width: 320px) {
+/* Responsive design */
+@media screen and (max-width: 720px) {
+    .score-panel {
+        width: 300px;
+    }
+
+    .restart {
+        padding-right: 20px;
+    }
+
+    .deck {
+        width: 300px;
+        min-height: 300px;
+        padding: 30px;
+    }
+
+    .deck .card {
+        height: 50px;
+        width: 50px;
+    }
+
+    .deck .card.show {
+        font-size: 20px;
+    }
     
 }

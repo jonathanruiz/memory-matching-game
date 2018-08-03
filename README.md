@@ -2,9 +2,13 @@
 
 ## Table of Contents
 
+* [Demo](#demo)
 * [Rules](#rules)
 * [Features](#features)
 * [Code Dependencies](#code-dependencies)
+
+## Demo
+Here is a link to [live demo](https://memory-matching-game.netlify.com/).
 
 ## Rules
 
